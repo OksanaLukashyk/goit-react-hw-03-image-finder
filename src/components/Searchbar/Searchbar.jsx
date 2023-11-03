@@ -1,28 +1,7 @@
 import React, { Component } from 'react'
-// import { nanoid } from 'nanoid';
+import { ImSearch } from 'react-icons/im';
 import { Notify } from 'notiflix'
 import css from './Searchbar.module.css';
-
-// export const Searchbar = ({onSubmit}) => {
-//     return (
-//     <header className={css.searchbar}>
-//     <form className={css.form} onSubmit={onSubmit}>
-//     <button type="submit" className={css.button}>
-//       <span className={css.buttonLabel}>Search</span>
-//     </button>
-
-//     <input
-//       className={css.input}
-//       type="text"
-//       autoComplete="off"
-//       autoFocus
-//       placeholder="Search images and photos"
-//       name="searchQuery"
-//     />
-//     </form>
-//     </header>
-//     );
-// };
 
 export class Searchbar extends Component {
   state = {
@@ -30,18 +9,25 @@ export class Searchbar extends Component {
   }
 
 
-  handlerChange =(evt) => {
-
+  handleChange = (evt) => {
     this.setState({ searchQuery: evt.target.value})
   }
 
-  handleSubmit = evt => {
+  handleSubmit = (evt) => {
     evt.preventDefault();
-    if (this.state.searchQuery.trim()===""){
-    Notify.failure("Please enter your search query")
-    } 
+
+    if (this.state.searchQuery.trim()==="") {
+      Notify.warning("Please enter a valid search query", {
+        clickToClose: true,
+        timeout: 3000,
+        cssAnimationStyle: 'zoom',
+      });
+      return;
+    }
+
     this.props.onSubmit(this.state.searchQuery);
-      this.setState({ inputValue: ""})
+    this.setState({ searchQuery: "" });
+    evt.target.reset();
   }
   
   render() {
@@ -49,7 +35,8 @@ export class Searchbar extends Component {
       <header className={css.searchbar}>
         <form className={css.form} onSubmit={this.handleSubmit}>
           <button type="submit" className={css.button}>
-            <span className={css.buttonLabel}>Search</span>
+            {/* <span className={css.buttonLabel}>Search</span> */}
+            <ImSearch color="white" size="18" />
           </button>
 
           <input
