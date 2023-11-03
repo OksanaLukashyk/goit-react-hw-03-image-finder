@@ -1,4 +1,3 @@
-// Не забуваємо коректно опрацьовувати слухача для клавіатури в компоненті модального вікна.
 import React, { Component } from 'react';
 import css from './Modal.module.css';
 
