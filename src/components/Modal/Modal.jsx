@@ -9,7 +9,7 @@ export default class Modal extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('keydown', this.closeOnEsc);
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'scroll';
     }
 
     closeOnOverlayClick = (evt) => {
