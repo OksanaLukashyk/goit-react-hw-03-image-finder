@@ -4,12 +4,12 @@ import css from './Modal.module.css';
 export default class Modal extends Component {
     componentDidMount() {
         window.addEventListener('keydown', this.closeOnEsc);
-        document.body.style.overflow = 'hidden';
+        document.getElementsByTagName("body")[0] = 'hidden';
     }
 
     componentWillUnmount() {
         window.removeEventListener('keydown', this.closeOnEsc);
-        document.body.style.overflow = 'auto';
+        document.getElementsByTagName("body")[0] = 'auto';
     }
 
     closeOnOverlayClick = (evt) => {
