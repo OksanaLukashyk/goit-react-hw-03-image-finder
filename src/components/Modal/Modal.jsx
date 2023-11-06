@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import css from './Modal.module.css';
 
-export default class Modal extends Component {
+export class Modal extends Component {
     componentDidMount() {
         window.addEventListener('keydown', this.closeOnEsc);
         document.body.style.overflow = 'hidden';
